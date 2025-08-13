@@ -32,7 +32,7 @@ export type Author = {
 	slug: { current: string };
 	image?: {
 		asset: { _ref: string; _type: string };
-		hotspot?: any;
+		hotspot?: unknown;
 	};
 	bio?: BlockContent[];
 }
@@ -46,7 +46,7 @@ export type Post = {
     mainImage?: {
         asset: { _ref: string; _type: string };
         alt?: string;
-        hotspot?: any;
+        hotspot?: unknown;
     };
     categories?: Category[];
     publishedAt?: string;
