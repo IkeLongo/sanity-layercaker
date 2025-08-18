@@ -20,47 +20,41 @@ export type BlockContent = {
 }
 
 export type Category = {
-	_type: 'category';
-	title: string;
-	slug: { current: string };
-	description?: string;
-}
-
-export type Author = {
-	_type: 'author';
-	name: string;
-	slug: { current: string };
-	image?: {
-		asset: { _ref: string; _type: string };
-		hotspot?: unknown;
-	};
-	bio?: BlockContent[];
-}
-
-export type Post = {
-    _type: string;
-    _id: string; // Added _id field
-    title: string;
-    slug: { current: string };
-    author: Author;
-    mainImage?: {
-        asset: { _ref: string; _type: string };
-        alt?: string;
-        hotspot?: unknown;
-    };
-    categories?: Category[];
-    publishedAt?: string;
-    body?: BlockContent[];
-}
-
-// Query result types
-export type PostListItem = {
-    _id: string;
-    title: string;
-    slug: { current: string };
+  _id: string;
+  title: string;
+  slug: { current: string };
 };
 
-// Query result types
-export type PostsQueryResult = PostListItem[];
-export type PostQueryResult = Pick<Post, 'title' | 'body' | 'mainImage'>;
+export type Author = {
+  name: string;
+  image?: {
+    asset: { _ref: string; _type: string };
+    hotspot?: unknown;
+  };
+};
+
+export type Post = {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  body?: any; // You can replace 'any' with your BlockContent[] type if you have it
+  mainImage?: {
+    asset: { _ref: string; _type: string };
+    alt?: string;
+    hotspot?: unknown;
+  };
+  publishedAt?: string;
+  categories?: Category[];
+  author?: Author;
+};
+
+// POSTS_QUERY result type (array of posts)
+export type PostsQueryResult = Post[];
+
+// POSTS_SLUGS_QUERY result type (array of slugs)
+export type PostSlug = { slug: string };
+export type PostsSlugsQueryResult = PostSlug[];
+
+// POST_QUERY result type (single post or null)
+export type PostQueryResult = Post | null;
 
